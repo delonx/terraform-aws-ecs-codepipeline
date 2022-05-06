@@ -1,11 +1,13 @@
 variable "region" {
   type        = string
   description = "AWS Region"
+  default     = "ap-southeast-1"
 }
 
 variable "availability_zones" {
   type        = list(string)
   description = "List of availability zones"
+  default     = ["ap-southeast-1a", "ap-southeast-1b"]
 }
 
 variable "vpc_cidr_block" {
@@ -16,6 +18,7 @@ variable "vpc_cidr_block" {
 variable "ecs_launch_type" {
   type        = string
   description = "ECS launch type"
+  default     = "FARGATE"
 }
 
 variable "container_name" {
@@ -56,6 +59,7 @@ variable "container_cpu" {
 variable "container_essential" {
   type        = bool
   description = "Determines whether all other containers in a task are stopped, if this container fails or stops for any reason. Due to how Terraform type casts booleans in json it is required to double quote this value"
+  default     = true
 }
 
 variable "container_environment" {
@@ -69,11 +73,13 @@ variable "container_environment" {
 variable "container_readonly_root_filesystem" {
   type        = bool
   description = "Determines whether a container is given read-only access to its root filesystem. Due to how Terraform type casts booleans in json it is required to double quote this value"
+  default     = false
 }
 
 variable "network_mode" {
   type        = string
   description = "The network mode to use for the task. This is required to be `awsvpc` for `FARGATE` `launch_type`"
+  default     = "awsvpc"
 }
 
 variable "task_cpu" {
@@ -94,6 +100,7 @@ variable "desired_count" {
 variable "deployment_controller_type" {
   type        = string
   description = "Type of deployment controller. Valid values are `CODE_DEPLOY` and `ECS`"
+  default     = "ECS"
 }
 
 variable "deployment_maximum_percent" {
@@ -109,16 +116,19 @@ variable "deployment_minimum_healthy_percent" {
 variable "ignore_changes_task_definition" {
   type        = bool
   description = "Whether to ignore changes in container definition and task definition in the ECS service"
+  default     = true
 }
 
 variable "assign_public_ip" {
   type        = bool
   description = "Assign a public IP address to the ENI (Fargate launch type only). Valid values are `true` or `false`. Default `false`"
+  default     = false
 }
 
 variable "propagate_tags" {
   type        = string
   description = "Specifies whether to propagate the tags from the task definition or the service to the tasks. The valid values are SERVICE and TASK_DEFINITION"
+  default     = "TASK_DEFINITION"
 }
 
 variable "github_oauth_token" {
@@ -197,4 +207,5 @@ variable "webhook_enabled" {
 variable "s3_bucket_force_destroy" {
   type        = bool
   description = "A boolean that indicates all objects should be deleted from the CodePipeline artifact store S3 bucket so that the bucket can be destroyed without error"
+  default     = true
 }
