@@ -1,6 +1,6 @@
-region = "us-east-2"
+region = "ap-southeast-1"
 
-availability_zones = ["us-east-2a", "us-east-2b"]
+availability_zones = ["ap-southeast-1a", "ap-southeast-1b"]
 
 namespace = "eg"
 
@@ -80,7 +80,7 @@ container_port_mappings = [
 
 github_oauth_token = "test"
 
-repo_owner = "cloudposse"
+repo_owner = "delonx"
 
 repo_name = "terraform-aws-ecs-codepipeline"
 
